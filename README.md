@@ -1,4 +1,4 @@
-# Parse du_stats_XXX.txt of each UE DL/UL Tput, BLER, and MCS
+# Parse du_stats_XXX.txt for each UE Time DL/UL Tput, BLER and MCS
 
 online tool => https://dustinchen26.github.io/parse_du4
 
