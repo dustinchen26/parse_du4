@@ -2,6 +2,13 @@
   Copyright © [2023] [Dustin_Chen]. All rights reserved.
   Author: Dustin_Chen
   Email:  Dustin_Chen@compal.com or chuhpsdustin@gmail.com
+  
+Parse “cu_stats_XXX.txt” => https://dustinchen26.github.io/parse_cu
+Parse “du_stats_XXX.txt” 1_UE => https://dustinchen26.github.io/parse_du
+Parse “du_stats_XXX.txt” multi-UE (Total_Tput) => https://dustinchen26.github.io/parse_du2
+Parse “du_stats_XXX.txt” multi-UE (Each_Tput) => https://dustinchen26.github.io/parse_du3
+Parse “du_stats_XXX.txt” multi-UE (Each_Tput_Time) => https://dustinchen26.github.io/parse_du4  
+  
 -->
 
 <!DOCTYPE html>
@@ -15,7 +22,7 @@
         body {
             font-family: 'Roboto', sans-serif;
             line-height: 1.2;
-            font-size: 15px;
+            font-size: 16px;
         }
 
         #output {
@@ -208,27 +215,11 @@
             style="line-height: 1;">Dustin_Chen@compal.com</a> or <a href="mailto:chuhpsdustin@gmail.com"
             style="line-height: 1;">chuhpsdustin@gmail.com</a></p>
     <ul>
-        <li><strong>Reference</strong>
-            <ul>
-                <li>Parse “cu_stats_XXX.txt” => <a href="https://dustinchen26.github.io/parse_cu"
-                        target="_blank">https://dustinchen26.github.io/parse_cu</a></li>
-                <li>Parse “du_stats_XXX.txt” 1_UE => <a href="https://dustinchen26.github.io/parse_du"
-                        target="_blank">https://dustinchen26.github.io/parse_du</a></li>
-                <li>Parse “du_stats_XXX.txt” multi-UE (Total_Tput) => <a href="https://dustinchen26.github.io/parse_du2"
-                        target="_blank">https://dustinchen26.github.io/parse_du2</a></li>
-                <li>Parse “du_stats_XXX.txt” multi-UE (Each_Tput) => <a href="https://dustinchen26.github.io/parse_du3"
-                        target="_blank">https://dustinchen26.github.io/parse_du3</a></li>
-                <li>Parse “du_stats_XXX.txt” multi-UE (Each_Tput_Time) => <a href="https://dustinchen26.github.io/parse_du4"
-                        target="_blank">https://dustinchen26.github.io/parse_du4</a></li>
-            </ul>
-        </li>
-    </ul>
-    <ul>
         <li><strong>Please paste the whole du_stats_XXX.txt content below, then it will parse the DL/UL Tput, BLER,
                 MCS.</strong>
             <ul>
-                <li>formula 1: DL-BLER = DL-RETX / (DL-RETX + DL-TX)</li>
-                <li>formula 2: UL-BLER = UL-CRC-FAIL / (UL-CRC-SUCC + UL-CRC-FAIL)</li>
+                <li>formula 1: <span style="color: blue;">DL-BLER</span> = DL-RETX / (DL-RETX + DL-TX)</li>
+                <li>formula 2: <span style="color: red;">UL-BLER</span> = UL-CRC-FAIL / (UL-CRC-SUCC + UL-CRC-FAIL)</li>
             </ul>
             <textarea id="inputTextArea" rows="10" cols="80"></textarea>
             <br>
