@@ -55,6 +55,11 @@ Parse “du_stats_XXX.txt” multi-UE (Each_Tput_Time) => https://dustinchen26.g
         #output span.ul-bler {
             color: red;
         }
+
+        /* Added style for buttons */
+        button {
+            font-size: 13px; /* Adjust the font size as needed */
+        }
     </style>
     <script>
         function parseContent() {
@@ -206,6 +211,10 @@ Parse “du_stats_XXX.txt” multi-UE (Each_Tput_Time) => https://dustinchen26.g
 
             return output;
         }
+        
+        function printToPDF() {
+            window.print();
+        }
     </script>
 </head>
 
@@ -223,7 +232,8 @@ Parse “du_stats_XXX.txt” multi-UE (Each_Tput_Time) => https://dustinchen26.g
             </ul>
             <textarea id="inputTextArea" rows="10" cols="80"></textarea>
             <br>
-            <button onclick="parseContent()">Parse</button>
+            <button onclick="parseContent()">Parse Txt</button>
+            <button onclick="printToPDF()">Print To PDF</button>
             <pre id="output"></pre>
         </li>
     </ul>
