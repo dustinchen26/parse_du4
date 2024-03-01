@@ -156,11 +156,11 @@ Parse “du_stats_XXX.txt” multi-UE (Each_Tput_Time) => https://dustinchen26.g
             console.log("Parsing Cell Data at Line " + (index + 1) + ": ", lines[index]);
             var values = lines[index].trim().split(/\s+/);
             var ueId = values[0].padEnd(8);
-            var dlTx = values[3].padEnd(8);
-            var dlRetx = values[4].padEnd(8);
+            var ACK-TB0 = values[5].padEnd(8);
+            var NACK-TB0 = values[6].padEnd(8);
             // calculate dl bler
             try {
-                var dl_bler = parseFloat(dlRetx) / (parseFloat(dlTx) + parseFloat(dlRetx));
+                var dl_bler = parseFloat(NACK-TB0) / (parseFloat(ACK-TB0) + parseFloat(NACK-TB0));
                 dl_bler = isNaN(dl_bler) ? "NaN" : dl_bler.toFixed(4);
                 dl_bler = dl_bler.toString().padEnd(8);
             } catch (error) {
@@ -180,7 +180,7 @@ Parse “du_stats_XXX.txt” multi-UE (Each_Tput_Time) => https://dustinchen26.g
             var ulMcs = values[22].padEnd(8);
 
             // 返回結果字符串
-            output += "<span class='ue-id'>UE-ID=" + ueId + "</span>DL-TX=" + dlTx + "DL-RETX=" + dlRetx +
+            output += "<span class='ue-id'>UE-ID=" + ueId + "</span>DL-TX=" + ACK-TB0 + "DL-RETX=" + NACK-TB0 +
                 "<span class='dl-bler'>DL-BLER=" + dl_bler + "</span>DL-MCS=" +
                 dlMcs +
                 "UL-CRC-SUCC=" + ulCrcSucc + "UL-CRC-FAIL=" + ulCrcFail + "<span class='ul-bler'>UL-BLER=" + ul_bler +
@@ -192,11 +192,11 @@ Parse “du_stats_XXX.txt” multi-UE (Each_Tput_Time) => https://dustinchen26.g
             while (index < lines.length && /^\d/.test(lines[index].trim())) {
                 values = lines[index].trim().split(/\s+/);
                 ueId = values[0].padEnd(8);
-                dlTx = values[3].padEnd(8);
-                dlRetx = values[4].padEnd(8);
+                ACK-TB0 = values[5].padEnd(8);
+                NACK-TB0 = values[6].padEnd(8);
                 // calculate dl bler
                 try {
-                    var dl_bler = parseFloat(dlRetx) / (parseFloat(dlTx) + parseFloat(dlRetx));
+                    var dl_bler = parseFloat(NACK-TB0) / (parseFloat(ACK-TB0) + parseFloat(NACK-TB0));
                     dl_bler = isNaN(dl_bler) ? "NaN" : dl_bler.toFixed(4);
                     dl_bler = dl_bler.toString().padEnd(8);
                 } catch (error) {
@@ -215,7 +215,7 @@ Parse “du_stats_XXX.txt” multi-UE (Each_Tput_Time) => https://dustinchen26.g
                 }
 
                 ulMcs = values[22].padEnd(8);
-                output += "<span class='ue-id'>UE-ID=" + ueId + "</span>DL-TX=" + dlTx + "DL-RETX=" + dlRetx +
+                output += "<span class='ue-id'>UE-ID=" + ueId + "</span>DL-TX=" + ACK-TB0 + "DL-RETX=" + NACK-TB0 +
                     "<span class='dl-bler'>DL-BLER=" + dl_bler + "</span>DL-MCS=" +
                     dlMcs +
                     "UL-CRC-SUCC=" + ulCrcSucc + "UL-CRC-FAIL=" + ulCrcFail + "<span class='ul-bler'>UL-BLER=" +
