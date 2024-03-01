@@ -156,11 +156,11 @@ Parse “du_stats_XXX.txt” multi-UE (Each_Tput_Time) => https://dustinchen26.g
             console.log("Parsing Cell Data at Line " + (index + 1) + ": ", lines[index]);
             var values = lines[index].trim().split(/\s+/);
             var ueId = values[0].padEnd(8);
-            var ACK-TB0 = values[5].padEnd(8);
-            var NACK-TB0 = values[6].padEnd(8);
+            var ACK_TB0 = values[5].padEnd(8);
+            var NACK_TB0 = values[6].padEnd(8);
             // calculate dl bler
             try {
-                var dl_bler = parseFloat(NACK-TB0) / (parseFloat(ACK-TB0) + parseFloat(NACK-TB0));
+                var dl_bler = parseFloat(NACK_TB0) / (parseFloat(ACK_TB0) + parseFloat(NACK_TB0));
                 dl_bler = isNaN(dl_bler) ? "NaN" : dl_bler.toFixed(4);
                 dl_bler = dl_bler.toString().padEnd(8);
             } catch (error) {
@@ -180,7 +180,7 @@ Parse “du_stats_XXX.txt” multi-UE (Each_Tput_Time) => https://dustinchen26.g
             var ulMcs = values[22].padEnd(8);
 
             // 返回結果字符串
-            output += "<span class='ue-id'>UE-ID=" + ueId + "</span>DL-TX=" + ACK-TB0 + "DL-RETX=" + NACK-TB0 +
+            output += "<span class='ue-id'>UE-ID=" + ueId + "</span>ACK-TB[0]=" + ACK_TB0 + "NACK-TB[0]=" + NACK_TB0 +
                 "<span class='dl-bler'>DL-BLER=" + dl_bler + "</span>DL-MCS=" +
                 dlMcs +
                 "UL-CRC-SUCC=" + ulCrcSucc + "UL-CRC-FAIL=" + ulCrcFail + "<span class='ul-bler'>UL-BLER=" + ul_bler +
@@ -192,11 +192,11 @@ Parse “du_stats_XXX.txt” multi-UE (Each_Tput_Time) => https://dustinchen26.g
             while (index < lines.length && /^\d/.test(lines[index].trim())) {
                 values = lines[index].trim().split(/\s+/);
                 ueId = values[0].padEnd(8);
-                ACK-TB0 = values[5].padEnd(8);
-                NACK-TB0 = values[6].padEnd(8);
+                ACK_TB0 = values[5].padEnd(8);
+                NACK_TB0 = values[6].padEnd(8);
                 // calculate dl bler
                 try {
-                    var dl_bler = parseFloat(NACK-TB0) / (parseFloat(ACK-TB0) + parseFloat(NACK-TB0));
+                    var dl_bler = parseFloat(NACK_TB0) / (parseFloat(ACK_TB0) + parseFloat(NACK_TB0));
                     dl_bler = isNaN(dl_bler) ? "NaN" : dl_bler.toFixed(4);
                     dl_bler = dl_bler.toString().padEnd(8);
                 } catch (error) {
@@ -215,7 +215,7 @@ Parse “du_stats_XXX.txt” multi-UE (Each_Tput_Time) => https://dustinchen26.g
                 }
 
                 ulMcs = values[22].padEnd(8);
-                output += "<span class='ue-id'>UE-ID=" + ueId + "</span>DL-TX=" + ACK-TB0 + "DL-RETX=" + NACK-TB0 +
+                output += "<span class='ue-id'>UE-ID=" + ueId + "</span>ACK-TB[0]=" + ACK_TB0 + "NACK-TB[0]=" + NACK_TB0 +
                     "<span class='dl-bler'>DL-BLER=" + dl_bler + "</span>DL-MCS=" +
                     dlMcs +
                     "UL-CRC-SUCC=" + ulCrcSucc + "UL-CRC-FAIL=" + ulCrcFail + "<span class='ul-bler'>UL-BLER=" +
@@ -242,7 +242,7 @@ Parse “du_stats_XXX.txt” multi-UE (Each_Tput_Time) => https://dustinchen26.g
         <li><strong>Please paste the whole du_stats_XXX.txt content below, then it will parse the DL/UL Tput, BLER,
                 MCS.</strong>
             <ul>
-                <li>formula 1: <span style="color: blue;">DL-BLER</span> = DL-RETX / (DL-RETX + DL-TX)</li>
+                <li>formula 1: <span style="color: blue;">DL-BLER</span> = NACK-TB[0] / (NACK-TB[0] + ACK-TB[0])</li>
                 <li>formula 2: <span style="color: red;">UL-BLER</span> = UL-CRC-FAIL / (UL-CRC-SUCC + UL-CRC-FAIL)</li>
             </ul>
             <textarea id="inputTextArea" rows="10" cols="80"></textarea>
