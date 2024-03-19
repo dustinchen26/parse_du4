@@ -81,7 +81,7 @@ Parse “du_stats_XXX.txt” multi-UE (Each_Tput_Time) => https://dustinchen26.g
                 console.log("Processing Line " + (i + 1) + ":", line);
 
                 // 檢查是否包含 "GNB DU Statistics"
-                if (line.startsWith("GNB DU Statistics")) {
+                if (line.startsWith("GNB DU Statistics  ")) {
                     // Print the entire line and move to the next
                     output += line + "\n";
                     continue;
