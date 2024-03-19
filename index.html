@@ -129,7 +129,7 @@ Parse “du_stats_XXX.txt” multi-UE (Each_Tput_Time) => https://dustinchen26.g
                 // 如果遇到分隔線，則停止解析
                 if (lines[index].includes(
                         "--------------------------------------------------------------------------------------------"
-                        )) {
+                    )) {
                     break;
                 }
 
@@ -215,7 +215,8 @@ Parse “du_stats_XXX.txt” multi-UE (Each_Tput_Time) => https://dustinchen26.g
                 }
 
                 ulMcs = values[22].padEnd(8);
-                output += "<span class='ue-id'>UE-ID=" + ueId + "</span>ACK-TB[0]=" + ACK_TB0 + "NACK-TB[0]=" + NACK_TB0 +
+                output += "<span class='ue-id'>UE-ID=" + ueId + "</span>ACK-TB[0]=" + ACK_TB0 + "NACK-TB[0]=" +
+                    NACK_TB0 +
                     "<span class='dl-bler'>DL-BLER=" + dl_bler + "</span>DL-MCS=" +
                     dlMcs +
                     "UL-CRC-SUCC=" + ulCrcSucc + "UL-CRC-FAIL=" + ulCrcFail + "<span class='ul-bler'>UL-BLER=" +
