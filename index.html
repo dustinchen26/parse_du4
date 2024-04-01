@@ -1,14 +1,14 @@
-<!-- 
+<!--
   Copyright © [2023] [Dustin_Chen]. All rights reserved.
   Author: Dustin_Chen
   Email:  Dustin_Chen@compal.com or chuhpsdustin@gmail.com
-  
+
 Parse “cu_stats_XXX.txt” => https://dustinchen26.github.io/parse_cu
 Parse “du_stats_XXX.txt” 1_UE => https://dustinchen26.github.io/parse_du
 Parse “du_stats_XXX.txt” multi-UE (Total_Tput) => https://dustinchen26.github.io/parse_du2
 Parse “du_stats_XXX.txt” multi-UE (Each_Tput) => https://dustinchen26.github.io/parse_du3
-Parse “du_stats_XXX.txt” multi-UE (Each_Tput_Time) => https://dustinchen26.github.io/parse_du4  
-  
+Parse “du_stats_XXX.txt” multi-UE (Each_Tput_Time) => https://dustinchen26.github.io/parse_du4
+
 -->
 
 <!DOCTYPE html>
@@ -36,23 +36,23 @@ Parse “du_stats_XXX.txt” multi-UE (Each_Tput_Time) => https://dustinchen26.g
         }
 
         /* 將UE-ID文字設為綠色 */
-        #output span.ue-id {
+        .ue-id {
             color: green;
         }
 
-        #output span.dl-tpt {
+        .dl-tpt {
             color: blue;
         }
 
-        #output span.dl-bler {
+        .dl-bler {
             color: blue;
         }
 
-        #output span.ul-tpt {
+        .ul-tpt {
             color: red;
         }
 
-        #output span.ul-bler {
+        .ul-bler {
             color: red;
         }
 
@@ -107,6 +107,9 @@ Parse “du_stats_XXX.txt” multi-UE (Each_Tput_Time) => https://dustinchen26.g
 
             // 將結果添加到HTML中
             document.getElementById('output').innerHTML = output;
+
+            // 將結果輸出到output.txt文件中，去除HTML標籤
+            download(output.replace(/<[^>]+>/g, ''), 'output.txt', 'text/plain');
         }
 
         function parseUEData(lines, index) {
@@ -231,6 +234,18 @@ Parse “du_stats_XXX.txt” multi-UE (Each_Tput_Time) => https://dustinchen26.g
         function printToPDF() {
             window.print();
         }
+
+        function stripHTML(html) {
+            return html.replace(/<[^>]+>/g, '');
+        }
+
+        function download(content, fileName, contentType) {
+            var a = document.createElement("a");
+            var file = new Blob([content], { type: contentType });
+            a.href = URL.createObjectURL(file);
+            a.download = fileName;
+            a.click();
+        }
     </script>
 </head>
 
@@ -243,8 +258,8 @@ Parse “du_stats_XXX.txt” multi-UE (Each_Tput_Time) => https://dustinchen26.g
         <li><strong>Please paste the whole du_stats_XXX.txt content below, then it will parse the DL/UL Tput, BLER,
                 MCS.</strong>
             <ul>
-                <li>formula 1: <span style="color: blue;">DL-BLER</span> = NACK-TB[0] / (NACK-TB[0] + ACK-TB[0])</li>
-                <li>formula 2: <span style="color: red;">UL-BLER</span> = UL-CRC-FAIL / (UL-CRC-SUCC + UL-CRC-FAIL)</li>
+                <li>formula 1: DL-BLER = NACK-TB[0] / (NACK-TB[0] + ACK-TB[0])</li>
+                <li>formula 2: UL-BLER = UL-CRC-FAIL / (UL-CRC-SUCC + UL-CRC-FAIL)</li>
             </ul>
             <textarea id="inputTextArea" rows="10" cols="80"></textarea>
             <br>
